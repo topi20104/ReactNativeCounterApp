@@ -1,0 +1,21 @@
+create database counterapp;
+
+use counterapp;
+
+create table if not exists info
+	(ID int primary key auto_increment not null,
+	car int not null, 
+	bus int not null,
+	trucks int not null,
+	motorcycles int not null,
+	SessionID int not null,
+	UserID int not null,
+	Date varchar(255) not null,
+	longitude float not null, 
+	latitude float not null
+	Timer varchar(255) not null);
+
+
+grant all on counterapp.* to boys@localhost identified by 'localboys123';
+
+describe info;

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+	<head>
+		<meta
+			http-equiv="content-type"
+			content="application/xhtml+xml; charset=UTF-8"
+		/>
+		<title>Hello App Engine</title>
+		<script>
+			function sendData(infoform) {
+				var info = new Object();
+				info.car = infoform.car.value;
+				info.bus = infoform.bus.value;
+				info.trucks = infoform.trucks.value;
+				info.motorcycles = infoform.motorcycles.value;
+				info.sessionId = infoform.sessionId.value;
+				info.userId = infoform.userId.value;
+				info.date = infoform.date.value;
+				info.longitude = infoform.longitude.value;
+				info.latitude = infoform.latitude.value;
+				info.timer = infoform.timer.value;
+				
+
+				var x = JSON.stringify(info);
+				
+				xmlhttp = new XMLHttpRequest();
+				xmlhttp.onreadystatechange = function () {
+					if (this.readyState == 4 && this.status == 200) {
+						document.getElementById('result').innerHTML = this.responseText;
+						var d = JSON
+					}
+				};
+				xmlhttp.open('POST', './rest/counterservice/addjsonfish', true);
+				//   	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+				xmlhttp.setRequestHeader('Content-type', 'application/json');
+				//    	xmlhttp.send("person=" + x);
+				xmlhttp.send(x);
+			}
+		</script>
+	</head>
+
+	<body>
+		<h1>Hello App Engine!</h1>
+
+		<h2>JSON String</h2>
+		<form action="./rest/counterservice/addjsonfish" method="post">
+			car: <input type="text" name="car" value="" /><br />
+			bus: <input type="text" name="bus" value="" /><br />
+			trucks: <input type="text" name="trucks" value="" /><br />
+			motorcycles: <input type="text" name="motorcycles" value="" /><br />
+			SessionID: <input type="text" name="sessionId" value="" /><br />
+			UserID: <input type="text" name="userId" value="" /><br />
+			Date: <input type="text" name="date" value="" /><br />
+			longitude: <input type="text" name="longitude" value="" /><br />
+			latitude: <input type="text" name="latitude" value="" /><br />
+			Timer: <input type="text" name="timer" value="" /><br />
+			<br />
+			<input
+				type="button"
+				name="ok"
+				value="OK"
+				onclick="sendData(this.form);"
+			/><br />
+		</form>
+		<p id="result">The result comes here</p>
+	</body>
+</html>
